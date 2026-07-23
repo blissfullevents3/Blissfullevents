@@ -63,7 +63,7 @@ const Hero1 = () => {
           </div>
 
           <p className="md:hidden text-base md:text-lg text-gray-500 text-center md:text-left">
-            Enjoy premium cars, 24/7 support, flexible plans, and seamless customer service. Our glass-clear pricing and luxury experience set us apart.
+            Every celebration deserves perfection. From elegant weddings and corporate events to birthdays and special occasions, we transform your ideas into extraordinary experiences with impeccable planning and execution.
           </p>
 
           <div className="w-full md:hidden block mt-4">
@@ -79,7 +79,7 @@ const Hero1 = () => {
                 to="/form"
                 className="px-5 py-3 text-base text-center rounded-full bg-purple-600 hover:bg-purple-700 text-white transition-all duration-300 font-medium"
               >
-                Book a ride
+                Plan Your Event 
               </Link>
             </div>
           </div>

@@ -29,7 +29,7 @@ const EventsPage = () => {
 
   return (
     <section className="w-full bg-white">
-      <div className="max-w-7xl mx-auto py-10 px-6">
+      <div className="max-w-7xl mx-auto pt-36 pb-10 px-6">
 
         <div className="text-center mb-12">
           <div className="inline-block bg-purple-100 rounded-full px-5 py-2">
