@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import "./App.css";
@@ -61,8 +66,9 @@ function App() {
       {!isAdminRoute && <Navbar />}
 
       <Routes>
-
-        {/* Public Routes */}
+        {/* ===========================
+            Public Routes
+        ============================ */}
 
         <Route path="/" element={<Home />} />
 
@@ -85,14 +91,18 @@ function App() {
           element={<Form />}
         />
 
-        {/* Admin Login */}
+        {/* ===========================
+            Admin Login
+        ============================ */}
 
         <Route
           path="/admin/login"
           element={<Login />}
         />
 
-        {/* Protected Admin */}
+        {/* ===========================
+            Protected Admin Routes
+        ============================ */}
 
         <Route
           path="/admin/dashboard"
@@ -157,6 +167,14 @@ function App() {
           }
         />
 
+        {/* ===========================
+            404 Page Redirect
+        ============================ */}
+
+        <Route
+          path="*"
+          element={<Navigate to="/" replace />}
+        />
       </Routes>
 
       {!isAdminRoute && <Footer />}
