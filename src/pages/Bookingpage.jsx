@@ -16,6 +16,9 @@ import { supabase } from "../services/supabase";
 const BookingPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const nameRegex = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/;
+const phoneRegex = /^[6-9]\d{9}$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -34,29 +37,37 @@ const BookingPage = () => {
   }, [id]);
 const handleBooking = async () => {
   if (!formData.customer_name.trim()) {
-    alert("Please enter your name.");
-    return;
-  }
+  alert("Please enter your full name.");
+  return;
+}
 
-  if (!formData.phone.trim()) {
-    alert("Please enter your phone number.");
-    return;
-  }
+if (!nameRegex.test(formData.customer_name.trim())) {
+  alert(
+    "Name should contain only letters and spaces (e.g., John Doe)."
+  );
+  return;
+}
 
-  if (!formData.email.trim()) {
-    alert("Please enter your email.");
-    return;
-  }
+if (!phoneRegex.test(formData.phone.trim())) {
+  alert("Please enter a valid 10-digit Indian mobile number.");
+  return;
+}
 
-  if (!formData.utr_number.trim()) {
-    alert("Please enter the UTR number.");
-    return;
-  }
+if (!emailRegex.test(formData.email.trim())) {
+  alert("Please enter a valid email address.");
+  return;
+}
 
-  if (formData.ticket_count > event.available_tickets) {
-    alert("Requested tickets are not available.");
-    return;
-  }
+if (!formData.utr_number.trim()) {
+  alert("Please enter the UTR number.");
+  return;
+}
+
+if (formData.ticket_count > event.available_tickets) {
+  alert("Requested tickets are not available.");
+  return;
+}
+  
 
   setBookingLoading(true);
 
