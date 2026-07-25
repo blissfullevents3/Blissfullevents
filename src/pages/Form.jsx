@@ -88,10 +88,10 @@ const FormPage = () => {
 
     emailjs
       .send(
-        "service_rirk2et",
-        "template_h2z8zu8",
+        "service_bd09wb2",
+        "template_quqb619",
         formData,
-        "su_eSrukMplQonJE0"
+        "ulEldQJUOlD5inS75"
       )
       .then(() => {
         alert("Enquiry submitted successfully!");
