@@ -75,6 +75,47 @@ export const uploadQrImage = async (file) => {
 };
 
 /**
+ * Upload Ticket QR Image
+ * Uploads generated ticket QR code to:
+ * event-assets/tickets-qr/
+ */
+export const uploadTicketQrImage = async (blob, ticketId) => {
+  if (!blob) {
+    return {
+      data: null,
+      error: "No QR image provided",
+    };
+  }
+
+  const fileName = `${ticketId}.png`;
+  const filePath = `tickets-qr/${fileName}`;
+
+  const { error } = await supabase.storage
+    .from("event-assets")
+    .upload(filePath, blob, {
+      cacheControl: "3600",
+      contentType: "image/png",
+      upsert: true,
+    });
+
+  if (error) {
+    return { data: null, error };
+  }
+
+  const { data } = supabase.storage
+    .from("event-assets")
+    .getPublicUrl(filePath);
+
+  return {
+    data: {
+      path: filePath,
+      publicUrl: data.publicUrl,
+    },
+    error: null,
+  };
+};
+
+/**
  * Delete file from Storage
  */
 export const deleteStorageFile = async (filePath) => {
