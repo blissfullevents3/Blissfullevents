@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   CalendarDays,
@@ -100,9 +101,22 @@ const EventDetails = () => {
               {event.title}
             </h1>
 
-            <p className="mt-6 text-gray-600 leading-8">
-              {event.description}
-            </p>
+            <div className="mt-6 text-gray-600 leading-8">
+  <ReactMarkdown
+    components={{
+      p: ({ children }) => <p className="mb-4">{children}</p>,
+      ul: ({ children }) => (
+        <ul className="list-disc pl-6 mb-4">{children}</ul>
+      ),
+      ol: ({ children }) => (
+        <ol className="list-decimal pl-6 mb-4">{children}</ol>
+      ),
+      li: ({ children }) => <li className="mb-2">{children}</li>,
+    }}
+  >
+    {event.description}
+  </ReactMarkdown>
+</div>
 
             <div className="mt-8 space-y-5">
 

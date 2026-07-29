@@ -1,4 +1,5 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 import {
   CalendarDays,
   Clock,
@@ -12,9 +13,7 @@ const IndividualEventDetails = ({ event }) => {
 
   return (
     <div className="w-full py-12">
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-
         <img
           src={event.image}
           alt={event.title}
@@ -22,9 +21,7 @@ const IndividualEventDetails = ({ event }) => {
         />
 
         <div className="flex flex-col justify-between">
-
           <div>
-
             {event.badge && (
               <span className="inline-block bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-semibold mb-4">
                 {event.badge}
@@ -32,15 +29,53 @@ const IndividualEventDetails = ({ event }) => {
             )}
 
             <h1 className="text-4xl font-bold text-gray-800 mb-5">
-              {event.title}
+              This is a test{event.title}
             </h1>
 
-            <p className="text-gray-600 leading-8">
+            <ReactMarkdown
+              components={{
+                p: ({ children }) => (
+                  <p className="text-gray-600 leading-8 mb-4">{children}</p>
+                ),
+                ul: ({ children }) => (
+                  <ul className="list-disc ml-6 text-gray-600 leading-8 mb-4">
+                    {children}
+                  </ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="list-decimal ml-6 text-gray-600 leading-8 mb-4">
+                    {children}
+                  </ol>
+                ),
+                li: ({ children }) => (
+                  <li className="mb-2">{children}</li>
+                ),
+                h1: ({ children }) => (
+                  <h1 className="text-2xl font-bold text-gray-800 mb-4">
+                    {children}
+                  </h1>
+                ),
+                h2: ({ children }) => (
+                  <h2 className="text-xl font-semibold text-gray-800 mb-3">
+                    {children}
+                  </h2>
+                ),
+                h3: ({ children }) => (
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                    {children}
+                  </h3>
+                ),
+                strong: ({ children }) => (
+                  <strong className="font-semibold text-gray-900">
+                    {children}
+                  </strong>
+                ),
+              }}
+            >
               {event.description}
-            </p>
+            </ReactMarkdown>
 
             <div className="mt-8 space-y-4">
-
               <div className="flex items-center gap-3 text-gray-700">
                 <CalendarDays className="text-purple-600" />
                 <span>{event.date}</span>
@@ -60,9 +95,7 @@ const IndividualEventDetails = ({ event }) => {
                 <Ticket className="text-purple-600" />
                 <span>₹{event.price}</span>
               </div>
-
             </div>
-
           </div>
 
           <Link
@@ -71,11 +104,8 @@ const IndividualEventDetails = ({ event }) => {
           >
             Book Tickets
           </Link>
-
         </div>
-
       </div>
-
     </div>
   );
 };
